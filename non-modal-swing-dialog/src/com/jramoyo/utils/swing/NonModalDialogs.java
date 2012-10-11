@@ -13,6 +13,10 @@
  *   notice, this list of conditions and the following disclaimer 
  *   in the documentation and/or other materials provided with the
  *   distribution.
+ *   
+ * - Neither the name of the authors nor the names of its contributors 
+ *   may be used to endorse or promote products derived from this software 
+ *   without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
@@ -37,6 +41,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  * NonModalDialogs
@@ -261,15 +266,46 @@ public final class NonModalDialogs {
 		dialog.setVisible(true);
 	}
 
+	/*
+	 * Factory method for creating a JOptionPane given a message and message
+	 * type
+	 */
 	private static JOptionPane createJOptionPane(Object message, int messageType) {
 		return new JOptionPane(message, messageType);
 	}
 
+	/*
+	 * Factory method for creating a JOptionPane given a message, message type,
+	 * and option type
+	 */
 	private static JOptionPane createJOptionPane(Object message,
 			int messageType, int optionType) {
 		return new JOptionPane(message, messageType, optionType);
 	}
 
+	/*
+	 * Runnable for launching a Dialog via JOptionPane.
+	 */
+	private static class DialogLauncher implements Runnable {
+		private final JOptionPane jOptionPane;
+		private final String title;
+
+		private DialogLauncher(JOptionPane jOptionPane, String title) {
+			this.jOptionPane = jOptionPane;
+			this.title = title;
+		}
+
+		public void run() {
+			JDialog dialog = jOptionPane.createDialog(null, title);
+			jOptionPane.selectInitialValue();
+			dialog.setModal(false);
+			dialog.setVisible(true);
+		}
+	}
+
+	/*
+	 * Runnable for a Yes-No-Cancel confirm dialog
+	 */
 	private static final class YesNoCancelRunnable implements Runnable {
 		private final Object message;
 		private final String title;
@@ -290,14 +326,10 @@ public final class NonModalDialogs {
 		}
 
 		public void run() {
-			JOptionPane pane = createJOptionPane(message, messageType,
+			JOptionPane jOptionPane = createJOptionPane(message, messageType,
 					JOptionPane.YES_NO_CANCEL_OPTION);
-			JDialog dialog = pane.createDialog(null, title);
-			pane.selectInitialValue();
-			dialog.setModal(false);
-			dialog.setVisible(true);
-
-			while (!(pane.getValue() instanceof Integer)) {
+			SwingUtilities.invokeLater(new DialogLauncher(jOptionPane, title));
+			while (!(jOptionPane.getValue() instanceof Integer)) {
 				try {
 					TimeUnit.MILLISECONDS.sleep(100);
 				} catch (InterruptedException ex) {
@@ -305,29 +337,26 @@ public final class NonModalDialogs {
 				}
 			}
 
-			Thread optionExecutor;
-			switch (((Integer) pane.getValue()).intValue()) {
+			Runnable choiceBlock = null;
+			switch (((Integer) jOptionPane.getValue()).intValue()) {
 			case JOptionPane.YES_OPTION:
-				optionExecutor = new Thread(yesBlock,
-						"Confirm Dialog Yes Executor");
+				choiceBlock = yesBlock;
 				break;
 			case JOptionPane.NO_OPTION:
-				optionExecutor = new Thread(noBlock,
-						"Confirm Dialog No Executor");
+				choiceBlock = noBlock;
 				break;
-
 			case JOptionPane.CANCEL_OPTION:
-				optionExecutor = new Thread(cancelBlock,
-						"Confirm Dialog Cancel Executor");
-				break;
-			default:
-				optionExecutor = null;
+				choiceBlock = cancelBlock;
 				break;
 			}
-			optionExecutor.start();
+
+			SwingUtilities.invokeLater(choiceBlock);
 		}
 	}
 
+	/*
+	 * Runnable for a Yes-No confirm dialog
+	 */
 	private static final class YesNoRunnable implements Runnable {
 		private final Object message;
 		private final String title;
@@ -345,14 +374,10 @@ public final class NonModalDialogs {
 		}
 
 		public void run() {
-			JOptionPane pane = createJOptionPane(message, messageType,
-					JOptionPane.YES_NO_OPTION);
-			JDialog dialog = pane.createDialog(null, title);
-			pane.selectInitialValue();
-			dialog.setModal(false);
-			dialog.setVisible(true);
-
-			while (!(pane.getValue() instanceof Integer)) {
+			JOptionPane jOptionPane = createJOptionPane(message, messageType,
+					JOptionPane.YES_NO_CANCEL_OPTION);
+			SwingUtilities.invokeLater(new DialogLauncher(jOptionPane, title));
+			while (!(jOptionPane.getValue() instanceof Integer)) {
 				try {
 					TimeUnit.MILLISECONDS.sleep(100);
 				} catch (InterruptedException ex) {
@@ -360,21 +385,17 @@ public final class NonModalDialogs {
 				}
 			}
 
-			Thread optionExecutor;
-			switch (((Integer) pane.getValue()).intValue()) {
+			Runnable choiceBlock = null;
+			switch (((Integer) jOptionPane.getValue()).intValue()) {
 			case JOptionPane.YES_OPTION:
-				optionExecutor = new Thread(yesBlock,
-						"Confirm Dialog Yes Executor");
+				choiceBlock = yesBlock;
 				break;
 			case JOptionPane.NO_OPTION:
-				optionExecutor = new Thread(noBlock,
-						"Confirm Dialog No Executor");
-				break;
-			default:
-				optionExecutor = null;
+				choiceBlock = noBlock;
 				break;
 			}
-			optionExecutor.start();
+
+			SwingUtilities.invokeLater(choiceBlock);
 		}
 	}
 }
