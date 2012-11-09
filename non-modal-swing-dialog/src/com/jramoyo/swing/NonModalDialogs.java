@@ -34,7 +34,7 @@
  * NonModalDialogs.java
  * Sep 13, 2012
  */
-package com.jramoyo.utils.swing;
+package com.jramoyo.swing;
 
 import java.awt.Component;
 import java.util.concurrent.TimeUnit;
