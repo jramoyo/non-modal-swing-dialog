@@ -37,6 +37,8 @@
 package com.jramoyo.swing;
 
 import java.awt.Component;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JDialog;
@@ -53,6 +55,8 @@ import javax.swing.SwingUtilities;
  * @author jramoyo
  */
 public final class NonModalDialogs {
+	// Shared by all instances
+	private static final ExecutorService POOL = Executors.newCachedThreadPool();
 
 	/**
 	 * Brings up a dialog with the options Yes, No and Cancel; with the title,
@@ -118,10 +122,8 @@ public final class NonModalDialogs {
 	public static void exectuteOnYesNoCancelConfirmDialog(Object message,
 			String title, int messageType, Runnable yesBlock, Runnable noBlock,
 			Runnable cancelBlock) {
-		Thread thread = new Thread(new YesNoCancelRunnable(message, title,
-				messageType, yesBlock, noBlock, cancelBlock),
-				"Confirm Dialog Thread");
-		thread.start();
+		POOL.execute(new YesNoCancelRunnable(message, title, messageType,
+				yesBlock, noBlock, cancelBlock));
 	}
 
 	/**
@@ -201,9 +203,8 @@ public final class NonModalDialogs {
 	 */
 	public static void exectuteOnYesNoConfirmDialog(Object message,
 			String title, int messageType, Runnable yesBlock, Runnable noBlock) {
-		Thread thread = new Thread(new YesNoRunnable(message, title,
-				messageType, yesBlock, noBlock), "Confirm Dialog Thread");
-		thread.start();
+		POOL.execute(new YesNoRunnable(message, title, messageType, yesBlock,
+				noBlock));
 	}
 
 	/**
