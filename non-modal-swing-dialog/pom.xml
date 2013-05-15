@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -13,7 +12,7 @@
 	<artifactId>non-modal-swing-dialog</artifactId>
 	<packaging>jar</packaging>
 	<name>Non-modal Swing Dialogs</name>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2</version>
 	<description>A small library for creating non-modal dialogs in Java Swing</description>
 	<url>http://code.google.com/p/non-modal-swing-dialog/</url>
 
@@ -25,9 +24,9 @@
 	</licenses>
 
 	<scm>
-		<url>http://non-modal-swing-dialog.googlecode.com/svn/trunk/</url>
-		<connection>scm:svn:http://non-modal-swing-dialog.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://non-modal-swing-dialog.googlecode.com/svn/trunk/</developerConnection>
+		<url>http://non-modal-swing-dialog.googlecode.com/svn/tags/non-modal-swing-dialog-1.2</url>
+		<connection>scm:svn:http://non-modal-swing-dialog.googlecode.com/svn/tags/non-modal-swing-dialog-1.2</connection>
+		<developerConnection>scm:svn:https://non-modal-swing-dialog.googlecode.com/svn/tags/non-modal-swing-dialog-1.2</developerConnection>
 	</scm>
 
 	<developers>
