@@ -14,7 +14,7 @@
 	<packaging>jar</packaging>
 	<name>Non-modal Swing Dialogs</name>
 	<version>1.2-SNAPSHOT</version>
-	<description>Small library for creating non-modal dialogs in Java Swing</description>
+	<description>A small library for creating non-modal dialogs in Java Swing</description>
 	<url>http://code.google.com/p/non-modal-swing-dialog/</url>
 
 	<licenses>
@@ -53,7 +53,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>3.1</version>
 				<configuration>
 					<source>1.5</source>
 					<target>1.5</target>
