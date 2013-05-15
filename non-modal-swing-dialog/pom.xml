@@ -1,15 +1,42 @@
 <?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 
 	<groupId>com.jramoyo</groupId>
 	<artifactId>non-modal-swing-dialog</artifactId>
-	<name>non-modal-swing-dialog</name>
-	<version>1.2</version>
-
 	<packaging>jar</packaging>
+	<name>Non-modal Swing Dialogs</name>
+	<version>1.2-SNAPSHOT</version>
+	<description>Small library for creating non-modal dialogs in Java Swing</description>
+	<url>http://code.google.com/p/non-modal-swing-dialog/</url>
+
+	<licenses>
+		<license>
+			<name>The BSD 3-Clause License</name>
+			<url>http://opensource.org/licenses/BSD-3-Clause</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>http://non-modal-swing-dialog.googlecode.com/svn/trunk/</url>
+		<connection>scm:svn:http://non-modal-swing-dialog.googlecode.com/svn/trunk/</connection>
+		<developerConnection>scm:svn:https://non-modal-swing-dialog.googlecode.com/svn/trunk/</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>jramoyo</id>
+			<name>Jan Amoyo</name>
+			<email>contact@jramoyo.com</email>
+		</developer>
+	</developers>
 
 	<dependencies />
 
@@ -36,6 +63,14 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.9</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
