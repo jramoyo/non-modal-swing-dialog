@@ -12,7 +12,7 @@
 	<artifactId>non-modal-swing-dialog</artifactId>
 	<packaging>jar</packaging>
 	<name>Non-modal Swing Dialogs</name>
-	<version>1.2</version>
+	<version>1.3-SNAPSHOT</version>
 	<description>A small library for creating non-modal dialogs in Java Swing</description>
 	<url>http://code.google.com/p/non-modal-swing-dialog/</url>
 
@@ -24,9 +24,9 @@
 	</licenses>
 
 	<scm>
-		<url>http://non-modal-swing-dialog.googlecode.com/svn/tags/non-modal-swing-dialog-1.2</url>
-		<connection>scm:svn:http://non-modal-swing-dialog.googlecode.com/svn/tags/non-modal-swing-dialog-1.2</connection>
-		<developerConnection>scm:svn:https://non-modal-swing-dialog.googlecode.com/svn/tags/non-modal-swing-dialog-1.2</developerConnection>
+		<url>http://non-modal-swing-dialog.googlecode.com/svn/trunk/</url>
+		<connection>scm:svn:http://non-modal-swing-dialog.googlecode.com/svn/trunk/</connection>
+		<developerConnection>scm:svn:https://non-modal-swing-dialog.googlecode.com/svn/trunk/</developerConnection>
 	</scm>
 
 	<developers>
