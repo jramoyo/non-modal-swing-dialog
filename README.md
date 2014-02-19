@@ -1,0 +1,2 @@
+non-modal-swing-dialog
+======================
