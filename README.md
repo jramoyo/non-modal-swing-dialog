@@ -1,7 +1,4 @@
 # Non-modal Swing Dialogs
-A small open source Java library for creating non-modal dialogs in Swing.
-
----
 ## Abstract
 `JOptionPane` provides various methods to easily create message dialogs in Swing. A limitation to this, is that all dialogs created from `JOptionPane` are modal. 
 
@@ -15,7 +12,6 @@ The purpose of this library is to address this limitation to `JOptionPane` by pr
 
 Details on this class are available via [Javadoc](https://non-modal-swing-dialog.googlecode.com/svn/javadoc/index.html).
 
----
 ### Maven
 ```xml
 <dependency>
@@ -25,7 +21,6 @@ Details on this class are available via [Javadoc](https://non-modal-swing-dialog
 </dependency>
 ```
 
----
 ### Example
 The below code brings-up a non-modal Yes-No-Cancel confirm dialog. Depending on the option selected, the corresponding `Runnable` will be executed asynchronously.
 
