@@ -1,5 +1,6 @@
 # Non-modal Swing Dialogs
 [![Build Status](https://travis-ci.org/jramoyo/non-modal-swing-dialog.png?branch=master)](https://travis-ci.org/jramoyo/non-modal-swing-dialog)
+[![Gittip](http://img.shields.io/gittip/jramoyo.svg)](https://www.gittip.com/jramoyo/)
 
 ## Abstract
 `JOptionPane` provides various methods to easily create message dialogs in Swing. A limitation to this, is that all dialogs created from `JOptionPane` are modal. 
